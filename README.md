@@ -8,16 +8,20 @@ clipm
 
 依赖`python-gnupg` debian用户可以直接源内安装
 
+使用方法
+--------
+<br \>
 第一次使用需要初始化数据库 及 建立key
 
 
 ``python clipm.py init xx@gmail.com eleveni386``
 
 xx@gmail.com `密钥标识`
+<br \>
 eleveni386   `密钥key`
 
 后面很多操作都需要使用到, 所以请保存好.
-
+<br \>
 有了一个数据库我们就可以插入一条记录了比如
 
 ``python clipm.py insert title=数据库服务器 username=root password='!@#SDKJF' remark=这是一个测试记录' email=xx@gmail.com``
