@@ -46,9 +46,13 @@ eleveni386   `密钥key`
 ### 查看密码
 现在可以来正式使用这个工具,为我服务了.
 
-``python clipm.py 数据库服务器 ``
+``python clipm.py 数据库服务器 eleveni386``
 
 !@#SDKJF
+
+### 释疑
+这里我用明文key的方式来解密数据库内的密码, 本来这是一种很不安全的方法, 但是我为了结合tmux方法,就没有采用交互式key输出
+如有需求的,可以改写Search函数, 采用base64或者其他加密方法加密key, 或者直接使用交互式, 看君所需了.
 
 欢迎各路女汉纸,男同志来我的blog看哦, http://eleveni386.7axu.com
 
