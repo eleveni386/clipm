@@ -8,7 +8,7 @@
 #   Desc    :   简易密码管理
 #   FileName:   CLIPM
 
-# 根据用户key加密密码;用sqlite保存密码
+# 根据用户密钥加密密码;用sqlite保存密码
 
 import os
 import gnupg
@@ -17,6 +17,7 @@ import time
 import sqlite3
 import sys
 import getopt
+import base64
 
 class gpg():
 
@@ -99,6 +100,9 @@ class manager():
 							remark varchar);"
 							)
 			self.sql.commit()
+			print "标识: %s\nkey: %s"%(
+					self.email, base64.b64encode(self.passwd))
+			print "请保管好,标识和key"
 		except sqlite3.Error, e:
 			if self.sql:self.sql.rollback()
 			print "Error: %s"%e.args[0]
@@ -187,14 +191,14 @@ class manager():
 		finally:
 			if self.sql:self.sql.close()
 
-	def Search(self,userkey=None, pwd=None):
-		if userkey == None or pwd == None:Help;sys.exit(1)
+	def Search(self,content=None, userkey=None):
+		if content == None or userkey == None:Help;sys.exit(1)
 		try:
 			self.cur.execute(
 					"select title,username,password from myinfo where title='%s' \
-							limit 1;"%userkey)
+							limit 1;"%content)
 			data = self.cur.fetchone()
-			return self.g.decryptStr(data[2],pwd)
+			return self.g.decryptStr(data[2],base64.b64decode(userkey))
 		except sqlite3.Error, e:
 			if self.sql:self.sql.rollback()
 			print "Error: %s"%e.args[0]
@@ -206,6 +210,8 @@ def Help():
 	print """
 	init   初始化数据库;
 			usage: init email password
+			请保留好 标识(email) 用于加密
+			         key(password) 用于解密
 
 	insert 插入新记录 ;
 			insert title='',username='',password='',remark='',email=''
@@ -219,7 +225,7 @@ def Help():
 			当修改password时,email 不能为空,用于加密
 			title,username,password,remark 必须且仅能使用两个
 
-	%s title yourpassword
+	%s title yourkey
 	eleveni386
 	"""%(sys.argv[0])
 
