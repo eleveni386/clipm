@@ -19,7 +19,7 @@ clipm
 
 xx@gmail.com `密钥标识`
 <br \>
-eleveni386   `密钥key`
+ZWxldmVuaTM4Ng==   `密钥key`
 
 后面很多操作都需要使用到, 所以请保存好.
 
@@ -50,10 +50,11 @@ eleveni386   `密钥key`
 
 现在可以来正式使用这个工具,为我服务了.
 
-``python clipm.py 数据库服务器 eleveni386``
+``python clipm.py 数据库服务器 ZWxldmVuaTM4Ng==``
 
 !@#SDKJF
 
+<<<<<<< HEAD
 ### 查看现有密钥
 
     python clipm.py listkey
@@ -81,5 +82,8 @@ eleveni386   `密钥key`
 这里我用明文key的方式来解密数据库内的密码, 本来这是一种很不安全的方法, 但是我为了结合tmux方法,就没有采用交互式key输出
 如有需求的,可以改写Search函数, 采用base64或者其他加密方法加密key, 或者直接使用交互式, 看君所需了.
 
+=======
+最后考虑了下, 还是给key加一个简单的加密吧, 就用base64 意思意思下就可以了, 起码让人第一眼看不出真实key是多少<br />
+>>>>>>> 94f9d21c02b645452434af45ea902e6302bb8ce6
 欢迎各路女汉纸,男同志来我的blog看哦, http://eleveni386.7axu.com
 
